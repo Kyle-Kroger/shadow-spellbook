@@ -14,7 +14,7 @@ const ContentWrap = styled.div`
 `;
 
 const Main = styled.main`
-  width: 75%;
+  width: 80%;
   margin: 2rem auto;
   text-align: center;
 `;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import coverImage from "../../assets/black-leather.jpg";
 
-const StyledPageCover = styled.div`
+const PageCover = styled.div`
   background-image: url(${coverImage});
   background-size: cover;
   padding: 1rem;
@@ -10,9 +10,5 @@ const StyledPageCover = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-
-const PageCover = (props) => {
-  return ( <StyledPageCover>{props.children}</StyledPageCover> );
-}
  
 export default PageCover;

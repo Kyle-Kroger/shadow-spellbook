@@ -1,24 +1,13 @@
 import styled from "styled-components";
 import paper from "../../assets/paper-white.jpg";
+import Card from "./Card"
 
-const Card = styled.div`
-  padding: ${(props) => props.padding};
-  box-shadow: 0 15px 15px 5px rgba(0, 0, 0, 0.4);
+const PaperCard = styled(Card)`
   border-radius: 0px 0px 10px 10px;
   background-image: url(${paper});
   background-size: cover;
-  color: ${(props) => props.theme.mainColor};
+  border: 2px solid ${(p) => p.theme.mainColor};
+  border-top: 0px solid transparent;
 `;
-
-const PaperCard = (props) => {
-  return (
-    <Card
-      className={props.className}
-      padding={props.padding || "1rem"}
-    >
-      {props.children}
-    </Card>
-  );
-};
 
 export default PaperCard;

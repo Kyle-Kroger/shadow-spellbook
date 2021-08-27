@@ -11,7 +11,7 @@ import meriendaBoldWoff from "../../assets/fonts/Merienda-Bold.woff";
 export const theme = {
   mainColor: "#1b1b1b",
   altColor: "#c5c5c5",
-  purple: "#1f0431",
+  purple: "#5e425e",
   getMainColorA: (alpha) => {
     return `rgba(28,28,31, ${alpha})`;
   },

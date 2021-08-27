@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import { theme } from "./GlobalStyles";
 import NavBar from "./Navbar";
+import ToolBar from "./ToolBar";
 
 const StyledLayout = styled.div`
   position: relative;
@@ -24,6 +25,10 @@ const HeaderWrap = styled.div`
   top: 0;
 `;
 
+const HeaderShadow = styled.div`
+  box-shadow: 0 5px 15px 7px rgba(0, 0, 0, 0.4);
+`;
+
 const Layout = (props) => {
   return (
     <ThemeProvider theme={theme}>
@@ -31,8 +36,10 @@ const Layout = (props) => {
         <ContentWrap>
           <HeaderWrap>
             <Header />
+            <HeaderShadow />
             <NavBar />
           </HeaderWrap>
+          <ToolBar />
           <Main>{props.children}</Main>
         </ContentWrap>
         <Footer />

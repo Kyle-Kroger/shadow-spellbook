@@ -8,9 +8,11 @@ const SpellContainer = styled.div`
   grid-template-columns: ${(p) => p.columns || "33.3% 33.3% 33.3%"};
   margin: 1rem 0.7rem;
   grid-gap: 5px 0;
+  min-height: 0;
+  min-width: 0;
 `;
 
-const HEADINGS = ["Level","Name","Range"];
+const HEADINGS = ["Level","Name","Attack/Save"];
 
 const SpellList = (props) => {
 
@@ -18,7 +20,7 @@ const SpellList = (props) => {
     <SpellContainer columns="20% 50% 30%">
       <SpellHeadings key="heading" headings={HEADINGS}/>
       {spells.map((spell) => {
-        return <Spell key={spell.index} level={spell.level} name={spell.name} range={spell.range} />
+        return <Spell key={spell.index} spell={spell} />
       })}
     </SpellContainer>
   );

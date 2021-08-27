@@ -11,7 +11,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "Cantrip",
-    school: "necromancy"
+    save: "Ranged"
   },
   {
     index: "claws-of-darkness",
@@ -24,7 +24,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "Cantrip",
-    school: "Evocation"
+    save: "Melee"
   },
   {
     index: "douse-light",
@@ -37,7 +37,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "Cantrip",
-    school: "Transmutation"
+    save: "None"
   },
   {
     index: "shadow-bite",
@@ -50,7 +50,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "Cantrip",
-    school: "Evocation"
+    save: "CON Save"
   },
   {
     index: "shadow-blindness",
@@ -63,7 +63,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "Cantrip",
-    school: "Illusion"
+    save: "Melee"
   },
   {
     index: "silouette",
@@ -76,7 +76,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "Cantrip",
-    school: "Illusion"
+    save: "None"
   },
   {
     index: "black-ribbons",
@@ -84,12 +84,12 @@ const DEFAULT_SPELL_LIST = [
     desc: ["You pull pieces of the Shadow Realm into your own reality, causing a 20-foot cube to fill with inky ribbons that turn the area into difficult terrain and wrap around nearby creatures. Any creature that ends its turn in the area becomes restrained by the shadow ribbons until the end of its next turn unless it makes a successful Dexterity saving throw. Once a creature makes this saving throw successfully, it can't be restrained again by these black ribbons, but it's still affected by the difficult terrain."],
     higher_level: "",
     range: "40 feet",
-    components: ["V", "S", "M", "a piece of ribbon"],
+    components: ["V", "S", "M", "A piece of ribbon"],
     duration: "Up to 1 minute",
     concentration: true,
     casting_time: "1 action",
     level: "1st",
-    school: "Conjuration"
+    save: "DEX Save"
   },
   {
     index: "cloak-of-shadows",
@@ -102,7 +102,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 bonus action",
     level: "1st",
-    school: "Illusion"
+    save: "None"
   },
   {
     index: "cloying-darkness",
@@ -115,7 +115,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "1st", 
-    school: "Necromancy"
+    save: "Ranged"
   },
   {
     index: "color-spray",
@@ -129,7 +129,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "1st",
-    school: "Illusion"
+    save: "None"
   },
   {
     index: "ray-of-enfeeblement",
@@ -143,7 +143,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "1st",
-    school: "Necromancy"
+    save: "CON Save"
   },
   {
     index: "shadow-armor",
@@ -156,7 +156,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 reaction",
     level: "1st",
-    school: "Abjuration"
+    save: "None"
   },
   {
     index: "shadow-hands",
@@ -169,7 +169,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "1st",
-    school: "Evocation"
+    save: "DEX Save"
   },
   {
     index: "blindness-deafness",
@@ -182,7 +182,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "2nd",
-    school: "Necromancy"
+    save: "CON Save"
   },
   {
     index: "darkbolt",
@@ -195,7 +195,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "2nd",
-    school: "Evocation"
+    save: "Ranged"
   },
   {
     index: "darkness",
@@ -208,7 +208,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "2nd",
-    school: "Evocation"
+    save: "None"
   },
   {
     index: "dark-vision",
@@ -221,7 +221,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "2nd",
-    school: "Transmutation"
+    save: "None"
   },
   {
     index: "negative-image",
@@ -234,7 +234,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "2nd",
-    school: "Conjuration"
+    save: "CHA Save"
   },
   {
     index: "shadow-puppets",
@@ -247,7 +247,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "2nd",
-    school: "Illusion"
+    save: "INT Save"
   },
   {
     index: "slither",
@@ -261,7 +261,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "2nd",
-    school: "Transmution"
+    save: "None"
   },
   {
     index: "call-shadow-mastiff",
@@ -275,7 +275,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "3rd",
-    school: "Conjuration"
+    save: "None"
   },
   {
     index: "feign-death",
@@ -289,7 +289,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "3rd",
-    school: "Necromancy"
+    save: "None"
   },
   {
     index: "fly",
@@ -302,7 +302,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "3rd",
-    school: "Transmutaion"
+    save: "None"
   },
   {
     index: "legion",
@@ -315,7 +315,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "3rd",
-    school: "Conjuration"
+    save: "Melee"
   },
   {
     index: "shadow-trove",
@@ -328,7 +328,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 minute",
     level: "3rd",
-    school: "Transmution"
+    save: "None"
   },
   {
     index: "shield-of-star-and-shadow",
@@ -341,7 +341,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "3rd",
-    school: "Abjuration"
+    save: "None"
   },
   {
     index: "black-hand",
@@ -354,7 +354,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "4th",
-    school: "Necromacy"
+    save: "Ranged"
   },
   {
     index: "black-tentacles",
@@ -369,7 +369,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "4th",
-    school: "Conjuration"
+    save: "DEX Save"
   },
   {
     index: "night-terrors",
@@ -382,7 +382,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "4th",
-    school: "Illusion"
+    save: "WIS Save"
   },
   {
     index: "phantasmal-killer",
@@ -395,7 +395,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "4th",
-    school: "Illusion"
+    save: "WIS Save"
   },
   {
     index: "shadow-of-moil",
@@ -409,7 +409,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "4th",
-    school: "Necromacy"
+    save: "None"
   },
   {
     index: "shadow-monsters",
@@ -422,7 +422,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "4th",
-    school: "Illusion"
+    save: "WIS Save"
   },
   {
     index: "cone-of-cold",
@@ -435,7 +435,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "5th",
-    school: "Evocation"
+    save: "CON Save"
   },
   {
     index: "dark-dementing",
@@ -448,7 +448,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "5th",
-    school: "Illusion"
+    save: "CHA Save"
   },
   {
     index: "dream",
@@ -463,7 +463,7 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 minute",
     level: "5th",
-    school: "Illusion"
+    save: "None"
   }
 
 

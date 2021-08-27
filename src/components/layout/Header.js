@@ -7,8 +7,9 @@ const StyledHeader = styled.header`
   align-items: center;
   background-color: ${(props) => props.theme.mainColor};
   border-bottom: 3px solid ${props => props.theme.altColor};
-  box-shadow: 0 15px 15px 5px rgba(0, 0, 0, 0.4);
-
+  position: relative;
+  z-index: 10;
+  
   & h1,
   h3 {
     margin: 1rem;

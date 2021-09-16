@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledFooter = styled.footer`
   color: white;
-  background-color: ${(props) => props.theme.mainColor};
+  background-color: ${(props) => props.theme.colors.main};
   position: absolute;
   bottom: 0;
   width: 100%;

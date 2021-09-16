@@ -92,15 +92,14 @@ const ListItem = styled.li`
   bottom: 1rem;
   z-index: 1;
   text-align: center;
-  color: ${(p) => p.theme.altColor};
-  background-color: ${(p) => p.theme.purple};
+  color: ${(p) => p.theme.colors.alt};
+  background-color: ${(p) => p.theme.colors.purple};
   margin: 0 0.5rem;
-  margin-bottom: -1.7rem;
   padding: 0.5rem 0.3rem;
   padding-top: 1.7rem;
   box-shadow: 3px 10px 15px 5px rgba(0, 0, 0, 0.4);
   border-radius: 0px 0px 5px 5px;
-  border: 1px solid ${(p) => p.theme.mainColor};
+  border: 1px solid ${(p) => p.theme.colors.main};
   border-top: 0px solid transparent;
   cursor: pointer;
 
@@ -113,8 +112,7 @@ const ListItem = styled.li`
   ${(p) =>
     p.activePage &&
     css`
-      color: blue;
-      background-color: lightblue;
+      background-color: ${p => p.theme.colors.highlight};
       bottom: 0;
     `}
 

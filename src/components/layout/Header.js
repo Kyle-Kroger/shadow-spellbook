@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 const StyledHeader = styled.header`
   display: flex;
-  color: ${(props) => props.theme.altColor};
+  color: ${p => p.theme.colors.alt};
   justify-content: space-between;
   align-items: center;
-  background-color: ${(props) => props.theme.mainColor};
-  border-bottom: 3px solid ${props => props.theme.altColor};
+  background-color: ${(props) => props.theme.colors.main};
+  border-bottom: 3px solid ${props => props.theme.colors.alt};
   position: relative;
   z-index: 10;
   

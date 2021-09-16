@@ -4,7 +4,6 @@ import styled, { css } from "styled-components";
 
 const SpellDetails = (props) => {
   const {
-    index,
     desc,
     higher_level,
     range,
@@ -57,8 +56,8 @@ const SpellDetails = (props) => {
       </SpellPropertiesContainer>
       <SpellDivider />
       <SpellDescContainer>
-        {desc.map((text) => {
-          return <p key={"need a key for the paras"}>{text}</p>;
+        {desc.map((text, index) => {
+          return <p key={index}>{text}</p>;
         })}
         <p>{higher_level}</p>
       </SpellDescContainer>
@@ -108,7 +107,7 @@ const SpellDivider = styled.div`
   margin: 1.5rem auto;
   height: 3px;
   width: 80%;
-  background-color: ${(p) => p.theme.mainColor};
+  background-color: ${(p) => p.theme.colors.main};
 `;
 
 const SpellDescContainer = styled.div`

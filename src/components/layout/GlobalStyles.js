@@ -1,17 +1,21 @@
 import { createGlobalStyle } from "styled-components";
 
 import backgroundImg from "../../assets/shadowfell.jpg";
-import backgroundImgMobile from "../../assets/space_mobile.png";
-
 import meriendaWoff2 from "../../assets/fonts/Merienda-Regular_0_wt.woff2";
 import meriendaWoff from "../../assets/fonts/Merienda-Regular_0_wt.woff";
 import meriendaBoldWoff2 from "../../assets/fonts/Merienda-Bold.woff2";
 import meriendaBoldWoff from "../../assets/fonts/Merienda-Bold.woff";
 
+const COLORS = {
+  main: "#1b1b1b",
+  alt: "#c5c5c5",
+  purple: "#685A73",
+  highlight: "#17315B",
+}
+
+//This theme is used in Layout.js to disperse the theme throughout the app
 export const theme = {
-  mainColor: "#1b1b1b",
-  altColor: "#c5c5c5",
-  purple: "#5e425e",
+  colors: COLORS,
   getMainColorA: (alpha) => {
     return `rgba(28,28,31, ${alpha})`;
   },
@@ -32,6 +36,14 @@ const GlobalStyle = createGlobalStyle`
     font-weight: bold;
     font-style: normal;
   }
+  ::placeholder {
+    color: #c5c5c5;
+  }
+  html {
+    --color-text: #c5c5c5;
+    --color-main: #1b1b1b;
+    --color-purple: #685A73;
+  }
 
 
   * {
@@ -40,11 +52,9 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     font-family: 'Merienda', cursive;
-    background-image: url(${backgroundImg});
-    background-size: 100% 100%;
-
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(48, 61, 68, 1) 1000px, rgba(48, 61, 68, 1) 100%), url(${backgroundImg}) no-repeat;
     @media (max-width: 1024px) {
-      background-image: url(${backgroundImgMobile});
+      
     }
   }
 `;

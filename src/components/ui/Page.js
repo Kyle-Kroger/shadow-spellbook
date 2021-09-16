@@ -8,6 +8,7 @@ const Page = styled.div`
   width: 50%;
   margin: 0 auto;
   box-shadow: inset 0px 0px 40px 5px rgba(0,0,0,0.6);
+  color: ${p => p.theme.colors.main}
 `;
  
 export default Page;

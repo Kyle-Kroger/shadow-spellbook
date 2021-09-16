@@ -4,7 +4,7 @@ import PageCover from "../components/ui/PageCover";
 const NotFound = (props) => {
   return ( <PageCover>
     <Page>
-      <h1>Its seems I could not find the page you were looking for</h1>
+      <h1>It seems that content doesn't exist within my pages</h1>
     </Page>
     <Page>
       <p>Main content goes here!!</p>

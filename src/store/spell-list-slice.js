@@ -9,7 +9,9 @@ const spellListSlice = createSlice({
   initialState,
   reducers: {
     //Used when fetching the spell list from the backend
-    replaceSpellList(state, action) {},
+    replaceSpellList(state, action) {
+      state.spellList = action.payload;
+    },
     //Used on long rest to reset all cast spells and set a new active spell
     resetSpellList(state, action) {},
     //Used to add a new spell to the list

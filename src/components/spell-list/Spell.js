@@ -1,6 +1,9 @@
-import { Fragment } from "react-is";
+import { Fragment } from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+
 import useDelayedUnmounting from "../../hooks/use-delayed-unmounting";
+
 import SpellDetails from "./SpellDetails";
 
 export const SpellProperty = styled.div`
@@ -14,10 +17,21 @@ export const SpellProperty = styled.div`
 `;
 
 const Spell = (props) => {
-  const [state, show, hide] = useDelayedUnmounting();
   const {level, name, save} = props.spell;
+
+  const [state, show, hide] = useDelayedUnmounting();
+  const isCasting = useSelector(state => state.spellbookMode.isCasting);
+  const isDeleting = useSelector(state => state.spellbookMode.isDeleting)
+  
   const spellClickedHandler = () => {
-    state === 'mounted' ? hide() : show();
+    //check state of the book, else is default: show spell descriptions
+    if(isCasting) {
+
+    } else if(isDeleting) {
+
+    } else {
+      state === 'mounted' ? hide() : show();
+    }
   };
 
   return (

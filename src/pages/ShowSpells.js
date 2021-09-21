@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import SpellList from "../components/spell-list/SpellList";
@@ -18,29 +18,25 @@ const ShowSpells = (props) => {
     setFilteredSpells(spells);
   }, [dispatch, spells]);
 
-  const FilterSpells = (filterBy = 'name', filterValue = '') => {
-    let newSpellList;
-    if(filterValue.trim() === '') {
-      newSpellList = spells;
-    }
-    else {
-      newSpellList = spells.filter(spell => {
-        let re = new RegExp(`${filterValue}`, 'i');
-        return spell.name.search(re) !== -1;
-      });
+  const filterSpells = useCallback( (filters = {name:''}) => {
+    let newSpellList = [...spells];
+    for (const filter in filters) {
+      const filterValue = filters[filter];
+      let re = new RegExp(`${filterValue}`, 'i');
+      newSpellList = newSpellList.filter(spell => spell[filter].search(re) !== -1)
     }
     setFilteredSpells(newSpellList);
-  };
+  }, [spells]);
 
   return (
     <Fragment>
-      <SpellListFilter FilterSpells={FilterSpells}/>
+      <SpellListFilter filterSpells={filterSpells}/>
       <PageCover>
         <Page>
-          <SpellList spells={filteredSpells}/>
+          <SpellList spells={filteredSpells.slice(0, Math.ceil(filteredSpells.length / 2))}/>
         </Page>
         <Page>
-          Here are some more spells
+          <SpellList spells={filteredSpells.slice(Math.ceil(filteredSpells.length / 2 ))}/>
         </Page>
       </PageCover>
     </Fragment>

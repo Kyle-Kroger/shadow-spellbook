@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 //clear filter on click
@@ -6,27 +6,67 @@ import styled from "styled-components";
 //Filter by level should create a dropdown for levels cantrip-9th
 
 const SpellListFilter = (props) => {
-  const [filterValue, setFilterValue] = useState("");
+  const { filterSpells } = props;
 
-  const handleFilterNameChange = (event) => {
-    setFilterValue(event.target.value);
-    props.FilterSpells("name", event.target.value);
+  const [filterNameValue, setFilterNameValue] = useState("");
+  const [filterLevelValue, setFilterLevelValue] = useState("");
+
+  //will run whenever any of the dependencies change, need to memoize filterSpells (useCallback)
+  //Should run whenever the filters are changed so that spell list is filtered by both values
+  //Whenever either of the values change
+  useEffect(() => {
+    filterSpells({ name: filterNameValue, level: filterLevelValue });
+  }, [filterSpells, filterNameValue, filterLevelValue]);
+
+  const handleFilterChange = (event) => {
+    if (event.target.id === "name") {
+      setFilterNameValue(event.target.value);
+    } else if (event.target.id === "level") {
+      setFilterLevelValue(event.target.value);
+    }
+    //Should then run the useEffect to filter
   };
 
   const handleFilterFocus = (event) => {
-    setFilterValue('');
-    props.FilterSpells("name", '');
+    if (event.target.id === "name") {
+      setFilterNameValue("");
+    } else if (event.target.id === "level") {
+      setFilterLevelValue("");
+    }
+    //Should then run the useEffect to filter
   };
 
   return (
     <SpellFilterWrapper>
-      <Input placeholder="Filter spells by level..." type="text" />
       <Input
+        id="level"
+        list="levels"
+        placeholder="Filter spells by level..."
+        type="text"
+        onChange={handleFilterChange}
+        onFocus={handleFilterFocus}
+        value={filterLevelValue}
+      />
+      <datalist id="levels">
+        <option value="Cantrip" />
+        <option value="1st" />
+        <option value="2nd" />
+        <option value="3rd" />
+        <option value="4th" />
+        <option value="5th" />
+        <option value="6th" />
+        <option value="7th" />
+        <option value="8th" />
+        <option value="9th" />
+      </datalist>
+      <Input
+        autoComplete="off"
+        id="name"
         placeholder="Filter spells by name..."
         type="text"
-        onChange={handleFilterNameChange}
+        onChange={handleFilterChange}
         onFocus={handleFilterFocus}
-        value={filterValue}
+        value={filterNameValue}
       />
     </SpellFilterWrapper>
   );

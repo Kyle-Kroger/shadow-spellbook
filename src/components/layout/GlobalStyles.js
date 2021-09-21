@@ -11,6 +11,7 @@ const COLORS = {
   alt: "#c5c5c5",
   purple: "#685A73",
   highlight: "#17315B",
+  altHighlight: "#375CA6"
 }
 
 //This theme is used in Layout.js to disperse the theme throughout the app

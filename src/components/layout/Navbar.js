@@ -10,7 +10,7 @@ const NavBar = (props) => {
   const hist = useHistory();
   const { pathname } = loc;
 
-  const isDelete = useSelector((state) => state.spellbookMode.isDelete);
+  const isDeleting = useSelector((state) => state.spellbookMode.isDeleting);
   const isCasting = useSelector((state) => state.spellbookMode.isCasting);
   const dispatch = useDispatch();
 
@@ -21,16 +21,16 @@ const NavBar = (props) => {
   //reruns whenever any dependency changes therfore runs whenever casting tab or delete tab are clicked
   //This makes it impossible for isDelete or isCasting to be true if not on the show-spells page
   useEffect(() => {
-    if (isDelete && pathname !== "/show-spells") {
-      dispatch(spellbookModeActions.toggleIsDelete());
+    if (isDeleting && pathname !== "/show-spells") {
+      dispatch(spellbookModeActions.toggleIsDeleting());
     }
     if (isCasting && pathname !== "/show-spells") {
       dispatch(spellbookModeActions.toggleIsCasting());
     }
-  }, [isDelete, isCasting, pathname, dispatch]);
+  }, [isDeleting, isCasting, pathname, dispatch]);
 
-  const toggleDelete = () => {
-    dispatch(spellbookModeActions.toggleIsDelete());
+  const toggleDeleting = () => {
+    dispatch(spellbookModeActions.toggleIsDeleting());
   };
 
   const toggleCasting = () => {
@@ -52,7 +52,7 @@ const NavBar = (props) => {
         >
           Add Spell
         </ListItem>
-        <ListItem onClick={toggleDelete} activeAction={isDelete}>
+        <ListItem onClick={toggleDeleting} activeAction={isDeleting}>
           Delete Spell
         </ListItem>
         <ListItem onClick={toggleCasting} activeAction={isCasting}>
@@ -119,13 +119,8 @@ const ListItem = styled.li`
   ${(p) =>
     p.activeAction &&
     css`
-      color: green;
-      background-color: pink;
+      background-color: ${p => p.theme.colors.altHighlight};
       bottom: 0;
-
-      &:hover {
-        background-color: red;
-      }
     `}
 `;
 

@@ -26,7 +26,9 @@ const spellListSlice = createSlice({
 
     //Permanently delete a spell from the list
     //needs to select a new active spell if the active spell is deleted
-    deleteSpell(state, action) {},
+    deleteSpell(state, action) {
+      console.log(`deleted the spell with index of ${action.payload} from the spellbook`)
+    },
 
     //fades a cast spell from the list. Setting the isCast to true changes the opacity in the spell component
     //If the spell is active should randomly select a new active spell
@@ -38,6 +40,14 @@ const spellListSlice = createSlice({
         }
       }
     },
+    setActiveSpell(state, action) {
+      for(const spell of state.spellList) {
+        //check  what spell the passed in index (action.payload) matches
+        if(spell.index === action.payload) {
+          spell.isActive = true;
+        }
+      }
+    }
   }
 });
 

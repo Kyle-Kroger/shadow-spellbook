@@ -7,6 +7,7 @@ import useDelayedUnmounting from "../../hooks/use-delayed-unmounting";
 import SpellDetails from "./SpellDetails";
 import Prompt from "../ui/YesNoPrompt";
 import { spellListActions } from "../../store/spell-list-slice";
+import { SPELLBOOK_MODES } from "../../store/spellbook-mode-slice";
 
 export const SpellProperty = styled.div`
   text-align: left;
@@ -15,46 +16,92 @@ export const SpellProperty = styled.div`
   padding: 0.5rem;
   cursor: pointer;
   text-shadow: 3px 2px 5px ${(p) => (p.highlight ? "purple" : "grey")}; //highlight active spell??
-  opacity: ${p => p.fade ? 0.5 : 1}; 
+  opacity: ${(p) => (p.fade ? 0.5 : 1)};
 `;
 
 const Spell = (props) => {
-  const {index, level, name, save, isCast } = props.spell;
+  const { index, level, name, save, isCast, isActive } = props.spell;
 
   const [state, show, hide] = useDelayedUnmounting();
   const dispatch = useDispatch();
-  const isCasting = useSelector((state) => state.spellbookMode.isCasting);
-  const isDeleting = useSelector((state) => state.spellbookMode.isDeleting);
-  const [showPrompt, setShowPrompt] = useState(false);
+  const currentMode = useSelector((state) => state.spellbookMode.currentMode);
+  const [showCastPrompt, setShowCastPrompt] = useState(false);
+  const [showDeletePrompt, setShowDeletePrompt] = useState(false);
 
   const spellClickedHandler = () => {
     //check state of the book, else is default: show spell descriptions
-    if (isCasting) {
-      setShowPrompt(true);
-    } else if (isDeleting) {
+    if (currentMode === SPELLBOOK_MODES.CAST) {
+      setShowCastPrompt(true);
+    } else if (currentMode === SPELLBOOK_MODES.DELETE) {
+      setShowDeletePrompt(true);
+    } else if (currentMode === SPELLBOOK_MODES.SET_ACTIVE) {
+      //Need to figure out what to do if the user navigates away without an active spell set
     } else {
       state === "mounted" ? hide() : show();
     }
   };
 
-  const closePrompt = () => {
-    setShowPrompt(false);
+  const closeCastPrompt = () => {
+    setShowCastPrompt(false);
   };
 
   const castConfirmPrompt = () => {
     dispatch(spellListActions.castSpell(index));
-    setShowPrompt(false);
+    setShowCastPrompt(false);
   };
 
-  const castMessage = "Would you like to cast this spell?";
-  const castPrompt = <Prompt message={castMessage} noFunc={closePrompt} yesFunc={castConfirmPrompt}></Prompt>;
+  const closeDeletePrompt = () => {
+    setShowDeletePrompt(false);
+  };
+
+  const deleteConfirmPrompt = () => {
+    dispatch(spellListActions.deleteSpell(index));
+    setShowDeletePrompt(false);
+  };
+
+  const castMessage = `Would you like to cast ${name}?`;
+  const castPrompt = (
+    <Prompt
+      message={castMessage}
+      noFunc={closeCastPrompt}
+      yesFunc={castConfirmPrompt}
+    ></Prompt>
+  );
+
+  const deleteMessage = `Are you certain you want to permanently delete ${name} from the spellbook? This action is irreversible`;
+  const deletePrompt = (
+    <Prompt
+      message={deleteMessage}
+      noFunc={closeDeletePrompt}
+      yesFunc={deleteConfirmPrompt}
+    ></Prompt>
+  );
 
   return (
     <Fragment>
-      {showPrompt && castPrompt}
-      <SpellProperty fade={isCast} onClick={spellClickedHandler}>{level}</SpellProperty>
-      <SpellProperty fade={isCast} onClick={spellClickedHandler}>{name}</SpellProperty>
-      <SpellProperty fade={isCast} onClick={spellClickedHandler}>{save}</SpellProperty>
+      {showCastPrompt && castPrompt}
+      {showDeletePrompt && deletePrompt}
+      <SpellProperty
+        activate={isActive}
+        fade={isCast}
+        onClick={spellClickedHandler}
+      >
+        {level}
+      </SpellProperty>
+      <SpellProperty
+        activate={isActive}
+        fade={isCast}
+        onClick={spellClickedHandler}
+      >
+        {name}
+      </SpellProperty>
+      <SpellProperty
+        activate={isActive}
+        fade={isCast}
+        onClick={spellClickedHandler}
+      >
+        {save}
+      </SpellProperty>
       {state !== "unmounted" && (
         <SpellDetails spell={props.spell} visible={state} />
       )}

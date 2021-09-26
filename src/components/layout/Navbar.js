@@ -2,9 +2,13 @@ import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useHistory } from "react-router-dom";
 import styled, { css } from "styled-components";
-import { spellListActions } from "../../store/spell-list-slice";
 
-import { spellbookModeActions } from "../../store/spellbook-mode-slice";
+import { spellListActions } from "../../store/spell-list-slice";
+import {
+  spellbookModeActions,
+  SPELLBOOK_MODES,
+} from "../../store/spellbook-mode-slice";
+
 import OkayPrompt from "../ui/OkayPrompt";
 
 const NavBar = (props) => {
@@ -12,8 +16,7 @@ const NavBar = (props) => {
   const hist = useHistory();
   const { pathname } = loc;
 
-  const isDeleting = useSelector((state) => state.spellbookMode.isDeleting);
-  const isCasting = useSelector((state) => state.spellbookMode.isCasting);
+  const currentMode = useSelector((state) => state.spellbookMode.currentMode);
   const [showPrompt, setShowPrompt] = useState(false);
   const dispatch = useDispatch();
 
@@ -22,30 +25,35 @@ const NavBar = (props) => {
   };
 
   //reruns whenever any dependency changes therfore runs whenever casting tab or delete tab are clicked
-  //This makes it impossible for isDelete or isCasting to be true if not on the show-spells page
+  //This makes it impossible for the mode to be in casting or delete while not on the show spells page
   useEffect(() => {
-    if (isDeleting && pathname !== "/show-spells") {
-      dispatch(spellbookModeActions.toggleIsDeleting());
+    if (
+      (currentMode === SPELLBOOK_MODES.DELETE ||
+        currentMode === SPELLBOOK_MODES.CAST) &&
+      pathname !== "/show-spells"
+    ) {
+      dispatch(spellbookModeActions.toggleMode(currentMode));
     }
-    if (isCasting && pathname !== "/show-spells") {
-      dispatch(spellbookModeActions.toggleIsCasting());
-    }
-  }, [isDeleting, isCasting, pathname, dispatch]);
+  }, [currentMode, pathname, dispatch]);
 
-  const toggleDeleting = () => {
-    dispatch(spellbookModeActions.toggleIsDeleting());
+  const toggleDeletingHandler = () => {
+    dispatch(spellbookModeActions.toggleMode(SPELLBOOK_MODES.DELETE));
   };
 
-  const toggleCasting = () => {
-    dispatch(spellbookModeActions.toggleIsCasting());
+  const toggleCastingHandler = () => {
+    dispatch(spellbookModeActions.toggleMode(SPELLBOOK_MODES.CAST));
   };
 
-  const takeLongRest = () => {
-    dispatch(spellListActions.resetSpellList());
+  const takeLongRestHandler = () => {
+    //Should reset the book then have the prompt change the mode to active
+    dispatch(spellbookModeActions.toggleMode(SPELLBOOK_MODES.SET_ACTIVE));
   };
 
-  const longRestMessage = 'Please select a new active spell';
-  const okayPrompt = <OkayPrompt message={longRestMessage} />
+  const longRestMessage = "Please select a new active spell";
+  const okayPrompt = <OkayPrompt message={longRestMessage} />;
+
+  const isDelete = currentMode === SPELLBOOK_MODES.DELETE;
+  const isCast = currentMode === SPELLBOOK_MODES.CAST;
 
   return (
     <Fragment>
@@ -64,13 +72,13 @@ const NavBar = (props) => {
           >
             Add Spell
           </ListItem>
-          <ListItem onClick={toggleDeleting} activeAction={isDeleting}>
+          <ListItem onClick={toggleDeletingHandler} activeAction={isDelete}>
             Delete Spell
           </ListItem>
-          <ListItem onClick={toggleCasting} activeAction={isCasting}>
+          <ListItem onClick={toggleCastingHandler} activeAction={isCast}>
             Cast Spell
           </ListItem>
-          <ListItem onClick={takeLongRest}>Take Long Rest</ListItem>
+          <ListItem onClick={takeLongRestHandler}>Take Long Rest</ListItem>
         </ul>
       </Nav>
     </Fragment>

@@ -22,7 +22,6 @@ const ShowSpells = (props) => {
 
   useEffect(() => {
     setFilteredSpells(spells);
-    console.log(spells);
   }, [spells]);
 
   const filterSpells = useCallback( (filters = {name:''}) => {

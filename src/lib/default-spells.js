@@ -11,7 +11,10 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "Cantrip",
-    save: "Ranged"
+    save: "Ranged",
+    isCast: false,
+    isActive: false
+
   },
   {
     index: "claws-of-darkness",
@@ -24,7 +27,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "Cantrip",
-    save: "Melee"
+    save: "Melee",
+    isCast: false,
+    isActive: false
   },
   {
     index: "douse-light",
@@ -37,7 +42,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "Cantrip",
-    save: "None"
+    save: "None",
+    isCast: false,
+    isActive: false
   },
   {
     index: "shadow-bite",
@@ -50,7 +57,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "Cantrip",
-    save: "CON Save"
+    save: "CON Save",
+    isCast: false,
+    isActive: false
   },
   {
     index: "shadow-blindness",
@@ -63,7 +72,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "Cantrip",
-    save: "Melee"
+    save: "Melee",
+    isCast: false,
+    isActive: false
   },
   {
     index: "silouette",
@@ -76,7 +87,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "Cantrip",
-    save: "None"
+    save: "None",
+    isCast: false,
+    isActive: false
   },
   {
     index: "black-ribbons",
@@ -89,7 +102,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "1st",
-    save: "DEX Save"
+    save: "DEX Save",
+    isCast: false,
+    isActive: false
   },
   {
     index: "cloak-of-shadows",
@@ -102,7 +117,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 bonus action",
     level: "1st",
-    save: "None"
+    save: "None",
+    isCast: false,
+    isActive: false
   },
   {
     index: "cloying-darkness",
@@ -115,7 +132,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "1st", 
-    save: "Ranged"
+    save: "Ranged",
+    isCast: false,
+    isActive: false
   },
   {
     index: "color-spray",
@@ -129,7 +148,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "1st",
-    save: "None"
+    save: "None",
+    isCast: false,
+    isActive: false
   },
   {
     index: "ray-of-enfeeblement",
@@ -143,7 +164,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "1st",
-    save: "CON Save"
+    save: "CON Save",
+    isCast: false,
+    isActive: false
   },
   {
     index: "shadow-armor",
@@ -156,7 +179,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 reaction",
     level: "1st",
-    save: "None"
+    save: "None",
+    isCast: false,
+    isActive: false
   },
   {
     index: "shadow-hands",
@@ -169,7 +194,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "1st",
-    save: "DEX Save"
+    save: "DEX Save",
+    isCast: false,
+    isActive: false
   },
   {
     index: "blindness-deafness",
@@ -182,7 +209,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "2nd",
-    save: "CON Save"
+    save: "CON Save",
+    isCast: false,
+    isActive: false
   },
   {
     index: "darkbolt",
@@ -195,7 +224,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "2nd",
-    save: "Ranged"
+    save: "Ranged",
+    isCast: false,
+    isActive: false
   },
   {
     index: "darkness",
@@ -208,7 +239,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "2nd",
-    save: "None"
+    save: "None",
+    isCast: false,
+    isActive: false
   },
   {
     index: "dark-vision",
@@ -221,7 +254,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "2nd",
-    save: "None"
+    save: "None",
+    isCast: false,
+    isActive: false
   },
   {
     index: "negative-image",
@@ -234,7 +269,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "2nd",
-    save: "CHA Save"
+    save: "CHA Save",
+    isCast: false,
+    isActive: false
   },
   {
     index: "shadow-puppets",
@@ -247,7 +284,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "2nd",
-    save: "INT Save"
+    save: "INT Save",
+    isCast: false,
+    isActive: false
   },
   {
     index: "slither",
@@ -261,7 +300,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "2nd",
-    save: "None"
+    save: "None",
+    isCast: false,
+    isActive: false
   },
   {
     index: "call-shadow-mastiff",
@@ -275,7 +316,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "3rd",
-    save: "None"
+    save: "None",
+    isCast: false,
+    isActive: false
   },
   {
     index: "feign-death",
@@ -289,7 +332,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "3rd",
-    save: "None"
+    save: "None",
+    isCast: false,
+    isActive: false
   },
   {
     index: "fly",
@@ -302,7 +347,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "3rd",
-    save: "None"
+    save: "None",
+    isCast: false,
+    isActive: false
   },
   {
     index: "legion",
@@ -315,7 +362,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "3rd",
-    save: "Melee"
+    save: "Melee",
+    isCast: false,
+    isActive: false
   },
   {
     index: "shadow-trove",
@@ -328,7 +377,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 minute",
     level: "3rd",
-    save: "None"
+    save: "None",
+    isCast: false,
+    isActive: false
   },
   {
     index: "shield-of-star-and-shadow",
@@ -341,7 +392,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "3rd",
-    save: "None"
+    save: "None",
+    isCast: false,
+    isActive: false
   },
   {
     index: "black-hand",
@@ -354,7 +407,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "4th",
-    save: "Ranged"
+    save: "Ranged",
+    isCast: false,
+    isActive: false
   },
   {
     index: "black-tentacles",
@@ -369,7 +424,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "4th",
-    save: "DEX Save"
+    save: "DEX Save",
+    isCast: false,
+    isActive: false
   },
   {
     index: "night-terrors",
@@ -382,7 +439,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "4th",
-    save: "WIS Save"
+    save: "WIS Save",
+    isCast: false,
+    isActive: false
   },
   {
     index: "phantasmal-killer",
@@ -395,7 +454,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "4th",
-    save: "WIS Save"
+    save: "WIS Save",
+    isCast: false,
+    isActive: false
   },
   {
     index: "shadow-of-moil",
@@ -409,7 +470,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "4th",
-    save: "None"
+    save: "None",
+    isCast: false,
+    isActive: false
   },
   {
     index: "shadow-monsters",
@@ -422,7 +485,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: true,
     casting_time: "1 action",
     level: "4th",
-    save: "WIS Save"
+    save: "WIS Save",
+    isCast: false,
+    isActive: false
   },
   {
     index: "cone-of-cold",
@@ -435,7 +500,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "5th",
-    save: "CON Save"
+    save: "CON Save",
+    isCast: false,
+    isActive: false
   },
   {
     index: "dark-dementing",
@@ -448,7 +515,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 action",
     level: "5th",
-    save: "CHA Save"
+    save: "CHA Save",
+    isCast: false,
+    isActive: false
   },
   {
     index: "dream",
@@ -463,7 +532,9 @@ const DEFAULT_SPELL_LIST = [
     concentration: false,
     casting_time: "1 minute",
     level: "5th",
-    save: "None"
+    save: "None",
+    isCast: false,
+    isActive: false
   }
 
 

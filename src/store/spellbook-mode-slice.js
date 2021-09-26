@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+export const SPELLBOOK_MODES = {DEFAULT: 0,
+CAST: 1,
+DELETE: 2,
+SET_ACTIVE: 3
+}
+
 const initialState = {isDeleting: false, isCasting: false};
 
 const spellbookModeSlice = createSlice({

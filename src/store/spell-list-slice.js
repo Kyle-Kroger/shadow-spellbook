@@ -1,8 +1,13 @@
+// {current} import in toolkit lets you see a current snapshot of the state allowing you to use console.log in your reducers
 import { createSlice } from "@reduxjs/toolkit";
 
-//Each spell object in the spell list should have an active and cast property
-//along with all the spell data to be displayed to the user
 const initialState = {spellList: []};
+
+//return an index for a randomly choosen active spell from all non-cast spells 
+const getRandomActiveSpell = (spellList) => {
+  //filter by non-cast spells
+
+}
 
 const spellListSlice = createSlice({
   name: "SpellList",
@@ -12,17 +17,27 @@ const spellListSlice = createSlice({
     replaceSpellList(state, action) {
       state.spellList = action.payload;
     },
+
     //Used on long rest to reset all cast spells and set a new active spell
     resetSpellList(state, action) {},
+
     //Used to add a new spell to the list
     addSpell(state, action) {},
-    //Used to remove a spell from the list
+
+    //Permanently delete a spell from the list
+    //needs to select a new active spell if the active spell is deleted
     deleteSpell(state, action) {},
-    //Used to set the currently active spell randomly after a spell is cast
-    //Maybe get all non cast spell ids, add them to an array and randomly select an element in that array?
-    randomizeSpell(state, action) {},
-    //Used to cast a spell, fading it from the list so that it cannot be cast again
-    castSpell(state, action) {},
+
+    //fades a cast spell from the list. Setting the isCast to true changes the opacity in the spell component
+    //If the spell is active should randomly select a new active spell
+    castSpell(state, action) {
+      for(const spell of state.spellList) {
+        //check  what spell the passed in index (action.payload) matches
+        if(spell.index === action.payload) {
+          spell.isCast = true;
+        }
+      }
+    },
   }
 });
 

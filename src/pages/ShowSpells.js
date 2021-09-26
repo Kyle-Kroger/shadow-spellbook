@@ -13,10 +13,17 @@ const ShowSpells = (props) => {
   const dispatch = useDispatch();
   const spells = useSelector(state => state.spellList.spellList);
   const [filteredSpells, setFilteredSpells] = useState([]);
+
+  //need to sperate the use effects into two because currently each time the spellList changes
+  //this is being rerun and refetching the spells from the backend erasing any changes made
   useEffect(() => {
     dispatch(spellListActions.replaceSpellList(initSpells));
+  }, [dispatch]);
+
+  useEffect(() => {
     setFilteredSpells(spells);
-  }, [dispatch, spells]);
+    console.log(spells);
+  }, [spells]);
 
   const filterSpells = useCallback( (filters = {name:''}) => {
     let newSpellList = [...spells];

@@ -1,10 +1,12 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import useDelayedUnmounting from "../../hooks/use-delayed-unmounting";
 
 import SpellDetails from "./SpellDetails";
+import Prompt from "../ui/YesNoPrompt";
+import { spellListActions } from "../../store/spell-list-slice";
 
 export const SpellProperty = styled.div`
   text-align: left;
@@ -13,33 +15,49 @@ export const SpellProperty = styled.div`
   padding: 0.5rem;
   cursor: pointer;
   text-shadow: 3px 2px 5px ${(p) => (p.highlight ? "purple" : "grey")}; //highlight active spell??
-  opacity: 1; //can fade spells that have been used
+  opacity: ${p => p.fade ? 0.5 : 1}; 
 `;
 
 const Spell = (props) => {
-  const {level, name, save} = props.spell;
+  const {index, level, name, save, isCast } = props.spell;
 
   const [state, show, hide] = useDelayedUnmounting();
-  const isCasting = useSelector(state => state.spellbookMode.isCasting);
-  const isDeleting = useSelector(state => state.spellbookMode.isDeleting)
-  
+  const dispatch = useDispatch();
+  const isCasting = useSelector((state) => state.spellbookMode.isCasting);
+  const isDeleting = useSelector((state) => state.spellbookMode.isDeleting);
+  const [showPrompt, setShowPrompt] = useState(false);
+
   const spellClickedHandler = () => {
     //check state of the book, else is default: show spell descriptions
-    if(isCasting) {
-
-    } else if(isDeleting) {
-
+    if (isCasting) {
+      setShowPrompt(true);
+    } else if (isDeleting) {
     } else {
-      state === 'mounted' ? hide() : show();
+      state === "mounted" ? hide() : show();
     }
   };
 
+  const closePrompt = () => {
+    setShowPrompt(false);
+  };
+
+  const castConfirmPrompt = () => {
+    dispatch(spellListActions.castSpell(index));
+    setShowPrompt(false);
+  };
+
+  const castMessage = "Would you like to cast this spell?";
+  const castPrompt = <Prompt message={castMessage} noFunc={closePrompt} yesFunc={castConfirmPrompt}></Prompt>;
+
   return (
     <Fragment>
-      <SpellProperty onClick={spellClickedHandler}>{level}</SpellProperty>
-      <SpellProperty onClick={spellClickedHandler}>{name}</SpellProperty>
-      <SpellProperty onClick={spellClickedHandler}>{save}</SpellProperty>
-      {state !== 'unmounted' && <SpellDetails spell={props.spell} visible={state}/>}
+      {showPrompt && castPrompt}
+      <SpellProperty fade={isCast} onClick={spellClickedHandler}>{level}</SpellProperty>
+      <SpellProperty fade={isCast} onClick={spellClickedHandler}>{name}</SpellProperty>
+      <SpellProperty fade={isCast} onClick={spellClickedHandler}>{save}</SpellProperty>
+      {state !== "unmounted" && (
+        <SpellDetails spell={props.spell} visible={state} />
+      )}
     </Fragment>
   );
 };

@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useHistory } from "react-router-dom";
 import styled, { css } from "styled-components";
+import { spellListActions } from "../../store/spell-list-slice";
 
 import { spellbookModeActions } from "../../store/spellbook-mode-slice";
+import OkayPrompt from "../ui/OkayPrompt";
 
 const NavBar = (props) => {
   const loc = useLocation();
@@ -12,6 +14,7 @@ const NavBar = (props) => {
 
   const isDeleting = useSelector((state) => state.spellbookMode.isDeleting);
   const isCasting = useSelector((state) => state.spellbookMode.isCasting);
+  const [showPrompt, setShowPrompt] = useState(false);
   const dispatch = useDispatch();
 
   const navHandler = (navTo) => {
@@ -37,30 +40,40 @@ const NavBar = (props) => {
     dispatch(spellbookModeActions.toggleIsCasting());
   };
 
+  const takeLongRest = () => {
+    dispatch(spellListActions.resetSpellList());
+  };
+
+  const longRestMessage = 'Please select a new active spell';
+  const okayPrompt = <OkayPrompt message={longRestMessage} />
+
   return (
-    <Nav>
-      <ul>
-        <ListItem
-          onClick={() => navHandler("/show-spells")}
-          activePage={pathname === "/show-spells"}
-        >
-          View Spells
-        </ListItem>
-        <ListItem
-          onClick={() => navHandler("/add-spell")}
-          activePage={pathname === "/add-spell"}
-        >
-          Add Spell
-        </ListItem>
-        <ListItem onClick={toggleDeleting} activeAction={isDeleting}>
-          Delete Spell
-        </ListItem>
-        <ListItem onClick={toggleCasting} activeAction={isCasting}>
-          Cast Spell
-        </ListItem>
-        <ListItem>Take Long Rest</ListItem>
-      </ul>
-    </Nav>
+    <Fragment>
+      {showPrompt && okayPrompt}
+      <Nav>
+        <ul>
+          <ListItem
+            onClick={() => navHandler("/show-spells")}
+            activePage={pathname === "/show-spells"}
+          >
+            View Spells
+          </ListItem>
+          <ListItem
+            onClick={() => navHandler("/add-spell")}
+            activePage={pathname === "/add-spell"}
+          >
+            Add Spell
+          </ListItem>
+          <ListItem onClick={toggleDeleting} activeAction={isDeleting}>
+            Delete Spell
+          </ListItem>
+          <ListItem onClick={toggleCasting} activeAction={isCasting}>
+            Cast Spell
+          </ListItem>
+          <ListItem onClick={takeLongRest}>Take Long Rest</ListItem>
+        </ul>
+      </Nav>
+    </Fragment>
   );
 };
 
@@ -112,14 +125,14 @@ const ListItem = styled.li`
   ${(p) =>
     p.activePage &&
     css`
-      background-color: ${p => p.theme.colors.highlight};
+      background-color: ${(p) => p.theme.colors.highlight};
       bottom: 0;
     `}
 
   ${(p) =>
     p.activeAction &&
     css`
-      background-color: ${p => p.theme.colors.altHighlight};
+      background-color: ${(p) => p.theme.colors.altHighlight};
       bottom: 0;
     `}
 `;

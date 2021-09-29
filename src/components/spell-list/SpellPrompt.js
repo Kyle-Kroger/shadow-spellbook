@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 
 import YesNoPrompt from "../ui/YesNoPrompt";
-import { SPELLBOOK_MODES } from "../../store/spellbook-mode-slice";
+import { spellbookModeActions, SPELLBOOK_MODES } from "../../store/spellbook-mode-slice";
 import { spellListActions } from "../../store/spell-list-slice";
 
 const SpellPrompt = (props) => {
@@ -26,8 +26,10 @@ const SpellPrompt = (props) => {
   } else if(action === SPELLBOOK_MODES.SET_ACTIVE) {
     message = `Do you want to set ${spellName} as the active (free) spell?`;
     yesFunc = () => {
+      //is this bad to have 2 dispatches in the same function? maybe thunking is something to look into
       dispatch(spellListActions.setActiveSpell(spellIndex));
       handleClose();
+      dispatch(spellbookModeActions.toggleMode(SPELLBOOK_MODES.SET_ACTIVE))
     };
   } else {
     //this should never happen and is an error

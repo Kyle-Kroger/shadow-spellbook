@@ -45,15 +45,22 @@ const NavBar = (props) => {
   };
 
   const takeLongRestHandler = () => {
-    //Should reset the book then have the prompt change the mode to active
-    dispatch(spellbookModeActions.toggleMode(SPELLBOOK_MODES.SET_ACTIVE));
+    //Add a confirmation prompt before reseting the spellbook might be a good idea
+    dispatch(spellListActions.resetSpellList());
+    navHandler("/show-spells");
+    setShowPrompt(true);
   };
 
-  const longRestMessage = "Please select a new active spell";
-  const okayPrompt = <OkayPrompt message={longRestMessage} />;
+  const longRestPromptHandler = () => {
+    dispatch(spellbookModeActions.toggleMode(SPELLBOOK_MODES.SET_ACTIVE));
+    setShowPrompt(false);
+  }
 
-  const isDelete = currentMode === SPELLBOOK_MODES.DELETE;
-  const isCast = currentMode === SPELLBOOK_MODES.CAST;
+  const longRestMessage = "Please select a new active spell";
+  const okayPrompt = <OkayPrompt message={longRestMessage} onClose={longRestPromptHandler} />;
+
+  const isDeleting = currentMode === SPELLBOOK_MODES.DELETE;
+  const isCasting = currentMode === SPELLBOOK_MODES.CAST;
 
   return (
     <Fragment>
@@ -72,10 +79,10 @@ const NavBar = (props) => {
           >
             Add Spell
           </ListItem>
-          <ListItem onClick={toggleDeletingHandler} activeAction={isDelete}>
+          <ListItem onClick={toggleDeletingHandler} activeAction={isDeleting}>
             Delete Spell
           </ListItem>
-          <ListItem onClick={toggleCastingHandler} activeAction={isCast}>
+          <ListItem onClick={toggleCastingHandler} activeAction={isCasting}>
             Cast Spell
           </ListItem>
           <ListItem onClick={takeLongRestHandler}>Take Long Rest</ListItem>

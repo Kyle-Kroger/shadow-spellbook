@@ -19,7 +19,12 @@ const spellListSlice = createSlice({
     },
 
     //Used on long rest to reset all cast spells and set a new active spell
-    resetSpellList(state, action) {},
+    resetSpellList(state, action) {
+      for(const spell of state.spellList) {
+        spell.isCast = false;
+        spell.isActive = false;
+      }
+    },
 
     //Used to add a new spell to the list
     addSpell(state, action) {},

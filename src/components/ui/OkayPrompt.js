@@ -3,14 +3,14 @@ import styled from "styled-components";
 import Modal from "./Modal";
 
 const OkayPrompt = (props) => {
-  const { message, onClose } = props;
+  const { message, onClose: handleClose } = props;
 
   return (
     <Modal>
       <Wrapper>
         <Message>{message}</Message>
         <ButtonWrapper>
-          <Button onClick={onClose}>Okay</Button>
+          <Button onClick={handleClose}>Okay</Button>
         </ButtonWrapper>
       </Wrapper>
     </Modal>

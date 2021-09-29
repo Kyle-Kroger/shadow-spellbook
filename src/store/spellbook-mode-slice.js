@@ -8,9 +8,7 @@ export const SPELLBOOK_MODES = {
 };
 
 const initialState = {
-  currentMode: SPELLBOOK_MODES.DEFAULT,
-  isDeleting: false,
-  isCasting: false,
+  currentMode: SPELLBOOK_MODES.DEFAULT
 };
 
 const spellbookModeSlice = createSlice({
@@ -23,18 +21,6 @@ const spellbookModeSlice = createSlice({
         state.currentMode === action.payload
           ? SPELLBOOK_MODES.DEFAULT
           : action.payload;
-    },
-    toggleIsDeleting(state) {
-      state.isDeleting = !state.isDeleting;
-      if (state.isDeleting) {
-        state.isCasting = false;
-      }
-    },
-    toggleIsCasting(state) {
-      state.isCasting = !state.isCasting;
-      if (state.isCasting) {
-        state.isDeleting = false;
-      }
     },
   },
 });

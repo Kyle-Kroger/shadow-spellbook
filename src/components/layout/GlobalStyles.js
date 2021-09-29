@@ -40,17 +40,18 @@ const GlobalStyle = createGlobalStyle`
   ::placeholder {
     color: #c5c5c5;
   }
+
   html {
     --color-text: #c5c5c5;
     --color-main: #1b1b1b;
     --color-purple: #685A73;
   }
 
-
   * {
     box-sizing: border-box;
     margin: 0;
   }
+
   body {
     font-family: 'Merienda', cursive;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(48, 61, 68, 1) 1000px, rgba(48, 61, 68, 1) 100%), url(${backgroundImg}) no-repeat;
